@@ -1,10 +1,19 @@
+"use client"
 import React from 'react'
+import { useSession, signIn, signOut } from "next-auth/react"
 
 const page = () => {
+    const { data: session } = useSession()
+    if (session) {
+        return <>
+            Signed in as {session.user.email} <br />
+            <button onClick={() => signOut()}>Sign out</button>
+        </>
+    }
     return (
         <div className='text-white flex flex-col items-center py-4 w-[100vw]'>
-            <h1>hyaloo</h1>
-            <div className="login-buttons flex flex-col gap-4 mt-12 w-[60%] justify-center items-center">
+            <h1 className='font-bold text-2xl mt-10'>Login/SignUp</h1>
+            <div className="login-buttons flex flex-col gap-4 mt-9 w-[60%] justify-center items-center">
                 <button
                     className="flex items-center bg-white border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 w-[30%]">
                     <svg className="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -71,24 +80,13 @@ const page = () => {
 
                 <button
                     className="flex items-center bg-white border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 w-[30%]">
-                    <svg className="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
-                        viewBox="0 0 48 48" version="1.1">
-                        <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="Color-" transform="translate(-200.000000, -160.000000)" fill="#4460A0">
-                                <path
-                                    d="M225.638355,208 L202.649232,208 C201.185673,208 200,206.813592 200,205.350603 L200,162.649211 C200,161.18585 201.185859,160 202.649232,160 L245.350955,160 C246.813955,160 248,161.18585 248,162.649211 L248,205.350603 C248,206.813778 246.813769,208 245.350955,208 L233.119305,208 L233.119305,189.411755 L239.358521,189.411755 L240.292755,182.167586 L233.119305,182.167586 L233.119305,177.542641 C233.119305,175.445287 233.701712,174.01601 236.70929,174.01601 L240.545311,174.014333 L240.545311,167.535091 C239.881886,167.446808 237.604784,167.24957 234.955552,167.24957 C229.424834,167.24957 225.638355,170.625526 225.638355,176.825209 L225.638355,182.167586 L219.383122,182.167586 L219.383122,189.411755 L225.638355,189.411755 L225.638355,208 L225.638355,208 Z"
-                                    id="Facebook">
-
-                                </path>
-                            </g>
-                        </g>
-                    </svg>
+                    <svg className="h-8 w-8 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="96px" height="96px"><linearGradient id="Ld6sqrtcxMyckEl6xeDdMa" x1="9.993" x2="40.615" y1="9.993" y2="40.615" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2aa4f4" /><stop offset="1" stop-color="#007ad9" /></linearGradient><path fill="url(#Ld6sqrtcxMyckEl6xeDdMa)" d="M24,4C12.954,4,4,12.954,4,24s8.954,20,20,20s20-8.954,20-20S35.046,4,24,4z" /><path fill="#fff" d="M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184,0.714-4.121,2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9,22.981,44,24,44c0.921,0,1.82-0.084,2.707-0.204V29.301z" /></svg>
 
                     <span>Continue with Facebook</span>
                 </button>
 
 
-                <button
+                <button onClick={() => { signIn("github") }}
                     className="flex items-center bg-white border border-gray-300 rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 w-[30%]">
                     <svg className="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
                         viewBox="0 0 73 73" version="1.1">
