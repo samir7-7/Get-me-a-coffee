@@ -1,14 +1,12 @@
 "use client"
 import React from 'react'
 import { useSession, signIn, signOut } from "next-auth/react"
+import { redirect } from 'next/dist/server/api-utils'
 
 const page = () => {
     const { data: session } = useSession()
     if (session) {
-        return <>
-            Signed in as {session.user.email} <br />
-            <button onClick={() => signOut()}>Sign out</button>
-        </>
+        return redirect('/profile')
     }
     return (
         <div className='text-white flex flex-col items-center py-4 w-[100vw]'>
