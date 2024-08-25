@@ -1,11 +1,15 @@
 "use client"
 import React from 'react'
 import { useSession } from 'next-auth/react'
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 const profile = () => {
     const { data: session } = useSession();
     console.log(session);
+    if(!session){
+        const router = useRouter()
+       return router.push('/login')
+    }
    
         return (
             <div className="text-white flex flex-col items-center mt-10 gap-2">

@@ -14,9 +14,10 @@ export default function Home() {
         </div>
       </div>
 
+      {/* line */}
       <div className="bg-white opacity-10 h-1 w-full">
       </div>
-      
+
       <div className="text-white container mx-auto">
         <h1 className="text-center text-2xl my-12 font-bold">People can buy you a coffee</h1>
         <div className="flex justify-around w-full mb-8">
@@ -35,10 +36,11 @@ export default function Home() {
         </div>
       </div>
 
+      {/* line */}
       <div className="bg-white opacity-10 h-1 w-full">
       </div>
 
-      <div className="text-white container mx-auto">
+      <div className="text-white container mx-auto mb-7">
         <h1 className="text-center text-2xl my-12 font-bold">Learn more about us</h1>
         <div className="flex justify-around w-full">
           <div className="item flex flex-col items-center gap-2">

@@ -1,13 +1,16 @@
 "use client"
 import React from 'react'
 import { useSession, signIn, signOut } from "next-auth/react"
-import { redirect } from 'next/dist/server/api-utils'
+import { useRouter } from 'next/navigation'
 
 const page = () => {
     const { data: session } = useSession()
+    
     if (session) {
-        return redirect('/profile')
+        const router = useRouter()
+        router.push('/profile')
     }
+
     return (
         <div className='text-white flex flex-col items-center py-4 w-[100vw]'>
             <h1 className='font-bold text-2xl mt-10'>Login/SignUp</h1>
